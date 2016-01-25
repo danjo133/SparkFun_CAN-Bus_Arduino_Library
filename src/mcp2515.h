@@ -41,8 +41,9 @@ extern "C"
 
 #endif
 // ----------------------------------------------------------------------------
-typedef struct
+struct tCAN 
 {
+	tCAN(): id(0), header({0,8}),data({0,0,0,0,0,0,0,0}),extended(false) {}
 	uint32_t id;
 	struct {
 		int8_t rtr : 1;
@@ -50,7 +51,7 @@ typedef struct
 	} header;
 	uint8_t data[8];
 	bool extended; // true => 29bit id, false => 11bit id
-} tCAN;
+};
 
 // ----------------------------------------------------------------------------
 uint8_t spi_putc( uint8_t data );
